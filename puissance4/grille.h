@@ -5,13 +5,18 @@
 class grille
 {
 public:
+	grille(int nbpion, char nom);
 
 	int drawGrille();
 
 	int yellowCase();
 	int redCase();
 	int nullCase();
-private:
 
+	int getNbpion();
+	char getNom();
+private:
+	int nbpion;
+	char nom;
 };
 
