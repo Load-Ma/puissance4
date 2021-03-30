@@ -7,6 +7,8 @@
 
 int detectionWin::detection(int tab[]) 
 {
+	// cas particulier : 7large
+
 
 
 	return 0;

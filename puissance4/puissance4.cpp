@@ -11,17 +11,15 @@ int main() {
 	//detectInstance->setLargeur((int*)largeur);
 	//detectInstance->setTab((int*)tab);
 
-	int largeur= 7;
-	int* tab[21] = { 0 };
+	char tab[42] = { " " };
 
-	printf("%d \n", sizeof(*tab));
-
-	for (int i(0); i<sizeof(tab); i++)
+	for (int i = 0; i < size(tab); i++)
 	{
-		//tab[i] = 0;
-		printf("%p", *tab[i]);
+		printf("| %c ", tab[i]);
+		if ((i+1)%7 == 0 && i>0) {
+			printf("\n");
+		}
 	}
-
 	return 0;
 }
 
