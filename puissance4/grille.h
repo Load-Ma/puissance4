@@ -5,7 +5,7 @@
 class grille
 {
 public:
-	grille(int nbpion, char nom);
+//	grille(int nbpion, char nom);
 
 	int drawGrille();
 

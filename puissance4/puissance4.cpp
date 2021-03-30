@@ -11,17 +11,10 @@ int main() {
 	//detectInstance->setLargeur((int*)largeur);
 	//detectInstance->setTab((int*)tab);
 
-	int largeur= 7;
-	int* tab[21] = { 0 };
+	grille* lagrille = new grille();
+	lagrille->drawGrille();
 
-	printf("%d \n", sizeof(*tab));
-
-	for (int i(0); i<sizeof(tab); i++)
-	{
-		//tab[i] = 0;
-		printf("%p", *tab[i]);
-	}
-
+	
 	return 0;
 }
 
