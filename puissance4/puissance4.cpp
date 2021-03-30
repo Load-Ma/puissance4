@@ -27,6 +27,8 @@ int main() {
 	grille* grilleInstance = new grille();
 	grilleInstance->drawGrille();
 
+	grille* lagrille = new grille();
+	lagrille->drawGrille();
 	
 	return 0;
 }
