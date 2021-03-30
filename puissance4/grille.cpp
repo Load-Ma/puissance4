@@ -2,10 +2,10 @@
 
 using namespace std;
 
-grille::grille(int nbpion, char nom) {
-	this->nbpion = nbpion;
-	this->nom = nom;
-}
+//grille::grille(int nbpion, char nom) {
+	//this->nbpion = nbpion;
+	//this->nom = nom;
+//}
 
 int grille::drawGrille() {
 	char tab[42] = { " " };

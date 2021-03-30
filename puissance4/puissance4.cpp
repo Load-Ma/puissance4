@@ -11,6 +11,8 @@ int main() {
 	//detectInstance->setLargeur((int*)largeur);
 	//detectInstance->setTab((int*)tab);
 
+	grille* lagrille = new grille();
+	lagrille->drawGrille();
 	
 	return 0;
 }
