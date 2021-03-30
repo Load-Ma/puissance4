@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="detectionWin.cpp" />
+    <ClCompile Include="grille.cpp" />
     <ClCompile Include="puissance4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="detectionWin.h" />
+    <ClInclude Include="grille.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
