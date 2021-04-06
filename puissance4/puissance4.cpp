@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Joueur.h"
+#include "grille.h"
 
 
 using namespace std;
@@ -15,5 +16,8 @@ int main()
     France->setPion();
     nbrpion = France->getPion();
     France->afficherPion(nbrpion);
+
+    grille* grilleinstance = new grille();
+    grilleinstance->drawGrille();
 }
 
