@@ -9,10 +9,6 @@ public:
 
 	void drawGrille();
 
-	int yellowCase();
-	int redCase();
-	int nullCase();
-
 	int getNbpion();
 	char getNom();
 private:
