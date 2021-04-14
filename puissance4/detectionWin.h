@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream>
+#include <Windows.h>
+
+using namespace std;
 
 class detectionWin
 {
 public:
 	//detectionWin(int* largeur, int tab[]);
 
-	int detection(char tab[], int largeur);
+	int detection(char tab[], int largeur, int placement);
 
 	void setLargeur(int* largeur);
 	int* getLargeur();
