@@ -8,27 +8,25 @@ using namespace std;
 int main() {
 	
 	// cas particulier : 7 large
-	char tab[42] = { ' ' };
-	tab[17] = 'X'; // BASE
+	vector<char> tab;
+	for (int i = 0; i < 42; i++)
+	{
+		tab.push_back(' ');
+	}
+	int posInitiale = 17;
 
-	tab[15] = '3';
-	tab[16] = '1'; // left
+	tab[posInitiale] = 'x'; // BASE
 
-	tab[18] = '1'; // droite
-	tab[19] = '2';
-	tab[20] = '3';
-	//tab[10] = 'T'; // haut
-	//tab[24] = 'B'; // bas
-	//tab[9] = 'V'; // haut gauche
-	//tab[11] = 'W'; // haut droite
-	//tab[23] = 'X'; // bas gauche
-	//tab[25] = 'Y'; // Bas droite
+	tab[23] = 'x';
+	tab[11] = 'x';
+	tab[5] = 'x';
+
 	
 	int largeur = 7;
-	int placement = 17;
 
 	detectionWin* detectInstance = new detectionWin();
-	detectInstance->detection(tab, largeur, placement);
+	boolean win = detectInstance->detection(tab, largeur, posInitiale);
+	if (win) printf("YOU WON");
 
 	printf("\n");
 	printf("\n");
