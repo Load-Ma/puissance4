@@ -28,3 +28,12 @@ void Joueur::setNom() {
 void Joueur::setPion() {
 	this->nbrpion = 21;
 }
+
+int Joueur::getChoixJoueur() {
+	return this->choix;
+}
+
+int Joueur::choixJoueur() {
+	cout << "Veuillez saisir une colonne : ";
+	return this->choix;
+}

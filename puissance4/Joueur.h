@@ -10,6 +10,7 @@ private :
 
 	int nbrpion;
 	string nom;
+	int choix;
 
 public :
 
@@ -19,7 +20,8 @@ public :
 	int getPion();
 	void setNom();
 	void setPion();
-
+	int choixJoueur();
+	int getChoixJoueur();
 
 };
 

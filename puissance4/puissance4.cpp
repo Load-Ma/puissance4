@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    string nom;
+   /* string nom;
     int nbrpion;
     Joueur* France = new Joueur();
     France->setNom();
@@ -15,9 +15,17 @@ int main()
     France->afficherNom(nom);
     France->setPion();
     nbrpion = France->getPion();
-    France->afficherPion(nbrpion);
+    France->afficherPion(nbrpion);*/
 
     grille* grilleinstance = new grille();
+    grilleinstance->setLargeur();
+    grilleinstance->setHauteur();
+    grilleinstance->setDimension(grilleinstance->getLargeur(), grilleinstance->getHauteur());
+
+    grilleinstance->setGrille();
+   
+    vector<char> tab = grilleinstance->getGrille();
+  
     grilleinstance->drawGrille();
 }
 
