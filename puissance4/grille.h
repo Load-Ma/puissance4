@@ -1,18 +1,32 @@
 #pragma once
-#include <vector>
 #include <iostream>
+#include <vector>
+
+
+using namespace std;
+
 
 class grille
 {
 public:
-	//grille(int nbpion, char nom);
 
-	void drawGrille();
+	void drawGrille(vector<char> tab);
 
-	int getNbpion();
-	char getNom();
+	void initialiseGrille();
+
+	void setLargeur();
+	void setHauteur();
+	void setDimension(int, int);
+
+	int getDimension();
+	int getHauteur();
+	int getLargeur();
+	vector<char> getGrille();
+
+
 private:
-	int nbpion;
-	char nom;
+	int hauteur;
+	int largeur;
+	int tailletab;
+	vector <char> tab;
 };
-
