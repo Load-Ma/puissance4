@@ -3,6 +3,7 @@
 #include "grille.h"
 #include "detectionWin.h"
 #include "joueur.h"
+
 using namespace std;
 
 int main() {
@@ -16,12 +17,6 @@ int main() {
 	char symbol2 = 'o';
 	joueur* player1 = new joueur(symbol1);
 	joueur* player2 = new joueur(symbol2);
-	printf("Entrer un nom pour le joueur 1 : ");
-	cin >> name;
-	player1->setName(name);
-	printf("Entrer un nom pour le joueur 2 : ");
-	cin >> name;
-	player2->setName(name);
 	
 
 	// Création de la grille
@@ -37,46 +32,68 @@ int main() {
 	int dimension = grilleInstance->getDimension();
 	int tour = 0;
 	int lastPos = 0;
+	int choixMode = 0;
 	boolean win = false;
 	joueur* currentPlayer;
 
-
+	while (choixMode != 1 && choixMode != 2)
+	{
+		printf("Veuillez choisir un mode de jeu : \n");
+		printf("1 - joueur vs joueur\n");
+		printf("2 - joueur vs bot\n");
+		cin >> choixMode;
+	}
+	if (choixMode == 1)
+	{
+		player1->createUser();
+		player2->createUser();
+	}
+	else if (choixMode == 2)
+	{
+		player1->createUser();
+		player2->createBot();
+	}
 	while (!win)
 	{
-		printf("%d tour\n", tour);
 		if (tour%2==0)
 		{
-			printf("CHECK\n");
 			currentPlayer = player1;
 		}
 		else
 		{
-			printf("CHECK 2\n");
 			currentPlayer = player2;
 		}
-		newtab = grilleInstance->place(tab, currentPlayer->getSymbol(), currentPlayer->getName());
-		if (newtab != tab)
+		newtab = grilleInstance->place(tab, currentPlayer->getSymbol(), currentPlayer->getName(), currentPlayer->getIsBot());
+		system("cls");
+		tab = newtab;
+		lastPos = grilleInstance->getLastPos();
+		printf("Le joueur precedent a choisi la case %d\n", lastPos);
+		grilleInstance->drawGrille(tab, largeur);
+		tour++;
+		win = detectInstance->detection(tab, largeur, lastPos, currentPlayer);
+		if (win && currentPlayer->getWin() == true)
 		{
-			printf("CHECK 3\n");
-			system("cls");
-			tab = newtab;
-			lastPos = grilleInstance->getLastPos();
-			grilleInstance->drawGrille(tab);
-			tour++;
-			win = detectInstance->detection(tab, largeur, lastPos, currentPlayer);
-			if (win && currentPlayer->getWin() == true)
-			{
-				printf("Joueur %s remporte la partie\n", currentPlayer->getName().c_str());
+			printf("Joueur %s remporte la partie\n", currentPlayer->getName().c_str());
+		}
+		if (tour == dimension) {
+			printf("Personne n'a gagne\n");
+			printf("Partie terminee\n");
+			win = true;
+
+		}
+		if (win)
+		{
+			char replay;
+			printf("voulez vous rejouer (y/n) ? ");
+			cin >> replay;
+			if (replay == 'y') {
+				grilleInstance->initialiseGrille();
+				tab = grilleInstance->getGrille();
+				newtab.clear();
+				tour = 0;
+				lastPos = 0;
+				win = false;
 			}
-		}
-		else if (tour == dimension)
-		{
-			printf("Personne n'a gagné");
-			break;
-		}
-		else {
-			printf("Partie terminee");
-			break;
 		}
 	}
 	

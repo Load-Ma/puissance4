@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
+#include <Windows.h>
 
 using namespace std;
 
@@ -10,8 +10,8 @@ class grille
 {
 public:
 
-	void drawGrille(vector<char> tab);
-	vector<char> place(vector<char> tab, char symbol, string name);
+	void drawGrille(vector<char> tab, int largeur);
+	vector<char> place(vector<char> tab, char symbol, string name, bool isBot);
 
 	void initialiseGrille();
 
