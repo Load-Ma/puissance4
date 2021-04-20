@@ -10,7 +10,7 @@ class grille
 {
 public:
 
-	void drawGrille(vector<char> tab);
+	void drawGrille(vector<char> tab, int largeur);
 	vector<char> place(vector<char> tab, char symbol, string name);
 
 	void initialiseGrille();

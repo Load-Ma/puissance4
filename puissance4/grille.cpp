@@ -1,10 +1,10 @@
 #include "grille.h"
 
-void grille::drawGrille(vector<char> tab) {
+void grille::drawGrille(vector<char> tab, int largeur) {
 	for (int i = 0; i < size(tab); i++)
 	{
 		printf("| %c |", tab[i]);
-		if ((i + 1) % 7 == 0) {
+		if ((i + 1) % largeur == 0) {
 			printf("\n");
 		}
 	}
@@ -13,7 +13,6 @@ void grille::drawGrille(vector<char> tab) {
 vector<char> grille::place(vector<char> tab, char symbol, string name)
 {
 	bool verif = true;
-	bool asking = true;
 	int cpt = 0;
 	int choix;
 
@@ -29,22 +28,21 @@ vector<char> grille::place(vector<char> tab, char symbol, string name)
 	{
 		printf("Cette colonne n'existe pas\n");
 	}
-	if (tab[choix] == 'x') {
+	if (tab[choix] == 'x' || tab[choix] == 'o') {
 		printf("La colonne est pleine \n");
 	}
 	else {
 		while (verif == true) {
-			if (choix + this->largeur > tab.size() - 1 || tab[choix + this->largeur] == 'x' || tab[choix + this->largeur] == 'o' || cpt == 5) {
+			if (choix + this->largeur > tab.size() - 1 || tab[choix + this->largeur] == 'x' || tab[choix + this->largeur] == 'o' || cpt == this->getHauteur()-1) {
 				tab[choix] = symbol;
 				verif = false;
 				this->setLastPos(choix);
 			}
 			else {
-				choix += 7;
+				choix += largeur;
 				cpt++;
 			}
 		}
-		asking = false;
 	}
 
 	return tab;
