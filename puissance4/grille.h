@@ -11,13 +11,16 @@ class grille
 public:
 
 	void drawGrille(vector<char> tab);
+	vector<char> place(vector<char> tab, char symbol, string name);
 
 	void initialiseGrille();
 
 	void setLargeur();
 	void setHauteur();
 	void setDimension(int, int);
+	void setLastPos(int lastpos);
 
+	int getLastPos();
 	int getDimension();
 	int getHauteur();
 	int getLargeur();
@@ -25,8 +28,10 @@ public:
 
 
 private:
+	int lastPos;
 	int hauteur;
 	int largeur;
 	int tailletab;
+	int pionsJoues;
 	vector <char> tab;
 };

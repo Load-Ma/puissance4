@@ -5,16 +5,21 @@
 // 	this->tab = tab;
 //}
 
-int detectionWin::detection(vector<char> tab, int largeur, int posInitiale) {
+int detectionWin::detection(vector<char> tab, int largeur, int posInitiale, joueur* joueur) {
 	boolean win = false;
-	win = this->horizontalDetect(tab, largeur, posInitiale);
-	if (win == false) win = this->verticalDetect(tab, largeur, posInitiale);
-	if (win == false) win = this->SENODetect(tab, largeur, posInitiale);
-	if (win == false) win = this->SONEDetect(tab, largeur, posInitiale);
+	win = this->horizontalDetect(tab, largeur, posInitiale, joueur->getSymbol());
+	if (win == false) win = this->verticalDetect(tab, largeur, posInitiale, joueur->getSymbol());
+	if (win == false) win = this->SENODetect(tab, largeur, posInitiale, joueur->getSymbol());
+	if (win == false) win = this->SONEDetect(tab, largeur, posInitiale, joueur->getSymbol());
+	if (win)
+	{
+		joueur->setWin(win);
+		cout << joueur->getWin() << endl;
+	}
 	return win;
 }
 
-int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitiale)
+int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitiale, char symbol)
 {
 	boolean win = false;
 	int suite = 1;
@@ -32,14 +37,14 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 					win = true;
 					break;
 				}
-				if ((position + 1) == tab.size() || tab[position + 1] != 'x') break;
+				if ((position + 1) == tab.size() || tab[position + 1] != symbol) break;
 				position++;
 				suite++;
 			}
 		}
 		else
 		{
-			while ((position % largeur != 0) && tab[position-1] == 'x')
+			while ((position % largeur != 0) && tab[position-1] == symbol)
 			{
 				position--;
 			}
@@ -49,7 +54,7 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 					win = true;
 					break;
 				}
-				if ((position+1) == tab.size() || tab[position + 1] != 'x') break;
+				if ((position+1) == tab.size() || tab[position + 1] != symbol) break;
 				position++;
 				suite++;
 				if (position % largeur == 0)
@@ -64,7 +69,7 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 	return win;
 }
 
-int detectionWin::verticalDetect(vector<char> tab, int largeur, int posInitiale) {
+int detectionWin::verticalDetect(vector<char> tab, int largeur, int posInitiale, char symbol) {
 	boolean win = false;
 	int suite = 1;
 	int position = posInitiale;
@@ -79,7 +84,7 @@ int detectionWin::verticalDetect(vector<char> tab, int largeur, int posInitiale)
 				win = true;
 				break;
 			}
-			if ((position + largeur >= tab.size()) || tab[position + largeur] != 'x') break;
+			if ((position + largeur >= tab.size()) || tab[position + largeur] != symbol) break;
 			position += largeur;
 			suite++;
 		}
@@ -89,7 +94,7 @@ int detectionWin::verticalDetect(vector<char> tab, int largeur, int posInitiale)
 	return win;
 }
 
-int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale) {
+int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale, char symbol) {
 	boolean win = false;
 	int suite = 1;
 	int position = posInitiale;
@@ -106,14 +111,14 @@ int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale) {
 					win = true;
 					break;
 				}
-				if ((position - largeur - 1) < 0 || tab[position - largeur - 1] != 'x') break;
+				if ((position - largeur - 1) < 0 || tab[position - largeur - 1] != symbol) break;
 				position = position - largeur - 1;
 				suite++;
 			}
 		}
 		else
 		{
-			while ((position+1) % largeur != 0 && position+largeur < tab.size() && tab[position + largeur + 1] == 'x')
+			while ((position+1) % largeur != 0 && position+largeur < tab.size() && tab[position + largeur + 1] == symbol)
 			{
 				position = position + largeur + 1;
 			}
@@ -123,7 +128,7 @@ int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale) {
 					win = true;
 					break;
 				}
-				if ((position - largeur - 1) < 0 || tab[position - largeur - 1] != 'x') break;
+				if ((position - largeur - 1) < 0 || tab[position - largeur - 1] != symbol) break;
 				position = position - largeur - 1;
 				suite++;
 			}
@@ -134,7 +139,7 @@ int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale) {
 	return win;
 }
 
-int detectionWin::SONEDetect(vector<char> tab, int largeur, int posInitiale) {
+int detectionWin::SONEDetect(vector<char> tab, int largeur, int posInitiale, char symbol) {
 	boolean win = false;
 	int suite = 1;
 	int position = posInitiale;
@@ -151,14 +156,14 @@ int detectionWin::SONEDetect(vector<char> tab, int largeur, int posInitiale) {
 					win = true;
 					break;
 				}
-				if ((position - largeur + 1) < 0 || (position+1) % largeur == 0 || tab[position - largeur + 1] != 'x') break;
+				if ((position - largeur + 1) < 0 || (position+1) % largeur == 0 || tab[position - largeur + 1] != symbol) break;
 				position = position - largeur + 1;
 				suite++;
 			}
 		}
 		else
 		{
-			while (position % largeur != 0 && position + largeur < tab.size()-1 && tab[position + largeur - 1] == 'x')
+			while (position % largeur != 0 && position + largeur < tab.size()-1 && tab[position + largeur - 1] == symbol)
 			{
 				position = position + largeur - 1;
 			}
@@ -168,7 +173,7 @@ int detectionWin::SONEDetect(vector<char> tab, int largeur, int posInitiale) {
 					win = true;
 					break;
 				}
-				if ((position - largeur + 1) < 0 || tab[position - largeur + 1] != 'x') break;
+				if ((position - largeur + 1) < 0 || tab[position - largeur + 1] != symbol) break;
 				position = position - largeur + 1;
 				suite++;
 			}
