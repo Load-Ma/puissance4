@@ -36,6 +36,7 @@ int main() {
 	boolean win = false;
 	joueur* currentPlayer;
 
+	//Choix du mode
 	while (choixMode != 1 && choixMode != 2)
 	{
 		printf("Veuillez choisir un mode de jeu : \n");
@@ -52,7 +53,19 @@ int main() {
 	{
 		player1->createUser();
 		player2->createBot();
+		int diff = 0;
+		//Quand joueur vs bot on demande la difficulté
+		while (diff != 1 && diff != 2)
+		{
+			printf("Choisissez une difficulté : \n");
+			printf("1 - easy\n");
+			printf("2 - Medium\n");
+			cin >> diff;
+		}
+		player2->setBotDiff(diff);
+		
 	}
+	//La boucle de jeu (tour/win)
 	while (!win)
 	{
 		if (tour%2==0)
@@ -63,24 +76,30 @@ int main() {
 		{
 			currentPlayer = player2;
 		}
-		newtab = grilleInstance->place(tab, currentPlayer->getSymbol(), currentPlayer->getName(), currentPlayer->getIsBot());
+		// Demande du placement
+		newtab = grilleInstance->place(tab, currentPlayer->getSymbol(), currentPlayer->getName(), currentPlayer->getIsBot(), currentPlayer);
+		// CLear de la console
 		system("cls");
 		tab = newtab;
 		lastPos = grilleInstance->getLastPos();
 		printf("Le joueur precedent a choisi la case %d\n", lastPos);
+		//Affichage de la grille
 		grilleInstance->drawGrille(tab, largeur);
 		tour++;
 		win = detectInstance->detection(tab, largeur, lastPos, currentPlayer);
+		// Check si victoire d'un joueur
 		if (win && currentPlayer->getWin() == true)
 		{
 			printf("Joueur %s remporte la partie\n", currentPlayer->getName().c_str());
 		}
+		// Check si grille pleine
 		if (tour == dimension) {
 			printf("Personne n'a gagne\n");
 			printf("Partie terminee\n");
 			win = true;
 
 		}
+		//condition pour rejouer
 		if (win)
 		{
 			char replay;

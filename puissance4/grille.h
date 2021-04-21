@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
+#include "joueur.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class grille
 public:
 
 	void drawGrille(vector<char> tab, int largeur);
-	vector<char> place(vector<char> tab, char symbol, string name, bool isBot);
+	vector<char> place(vector<char> tab, char symbol, string name, bool isBot, joueur* joueur);
 
 	void initialiseGrille();
 
