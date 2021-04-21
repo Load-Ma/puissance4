@@ -29,6 +29,7 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 	while (checking)
 	{
 		boolean counting = true;
+		// Si le pion est dans la colonne la plus a gauche je compte en allant vers la droite
 		if (position % largeur == 0)
 		{
 			while (counting)
@@ -42,8 +43,10 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 				suite++;
 			}
 		}
+		// Sinon je me décale le plus a gauche possible, tant qu'il y a un pion de la meme couleur et/ou un colonne
 		else
 		{
+			// Je me décale vers la droite
 			while ((position % largeur != 0) && tab[position-1] == symbol)
 			{
 				position--;
@@ -54,6 +57,7 @@ int detectionWin::horizontalDetect(vector<char> tab, int largeur, int posInitial
 					win = true;
 					break;
 				}
+				// Puis la je compte en allant vers la droite
 				if ((position+1) == tab.size() || tab[position + 1] != symbol) break;
 				position++;
 				suite++;
@@ -74,7 +78,8 @@ int detectionWin::verticalDetect(vector<char> tab, int largeur, int posInitiale,
 	int suite = 1;
 	int position = posInitiale;
 	boolean checking = true;
-
+	// ici pas besoin de se décaler ou autre
+	// Le dernier pion joué est forcement au sommet donc je juste a compter en descendant
 	while (checking)
 	{
 		boolean counting = true;
@@ -100,9 +105,11 @@ int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale, cha
 	int position = posInitiale;
 	boolean checking = true;
 
+	// Comme horizontal, je vais cette fois le plus en bas a droite possible
 	while (checking)
 	{
 		boolean counting = true;
+		// Je verifie que le dernier pion ne soit pas deja en bas a gauche au maximum pour éviter de compte pour rien
 		if ((position+1) % largeur == 0 || position == tab.size()-1)
 		{
 			while (counting)
@@ -118,10 +125,12 @@ int detectionWin::SENODetect(vector<char> tab, int largeur, int posInitiale, cha
 		}
 		else
 		{
+			// Sinon je descends en bas a droite tant que je peux
 			while ((position+1) % largeur != 0 && position+largeur < tab.size() && tab[position + largeur + 1] == symbol)
 			{
 				position = position + largeur + 1;
 			}
+			// puis je compte
 			while (counting)
 			{
 				if (suite == 4) {
@@ -144,6 +153,8 @@ int detectionWin::SONEDetect(vector<char> tab, int largeur, int posInitiale, cha
 	int suite = 1;
 	int position = posInitiale;
 	boolean checking = true;
+
+	// Exactement le même principe que pour la diagonale SENO, mais cette fois cic je vais le plus en bas a gauche.
 
 	while (checking)
 	{
